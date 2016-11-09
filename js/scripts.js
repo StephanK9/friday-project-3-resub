@@ -1,23 +1,34 @@
-//User-Interface Logic//
+function play (inputNumber) {
+  var userNum = parseInt(inputNumber);
+  var numArray = [];
+  for (var i = 1; i <= userNum; i++) {
+    if (i % 3 == 0 && i % 5 ==0) {
+      numArray.push('Ping-Pong');
+    } else if (i % 3 == 0) {
+      numArray.push('Ping');
+    } else if (i % 5 == 0) {
+      numArray.push('Pong');
+    } else {
+      numArray.push(i);
+    }
+  };
+  return numArray;
+};
 
-$(document).ready(function(){
-  $("form").submit(function(event){
+
+$(document).ready(function() {
+  $("form").submit(function(event) {
+    $("#list").empty();
     event.preventDefault();
-    console.log(x);
 
-//Business Logic//
 
-var x = $('#input-number').val()
-for (var i = 1; i <= x; i++) {
-  if (i % 15 === 0) {
-    $('#list').append('<li>'+"Ping-Pong"+'</li>');}
-  else if (i % 3 === 0) {
-    $('#list').append('<li>'+"Ping"+'</li>');}
-  else if (i % 5 === 0) {
-    $('#list').append('<li>'+"Pong"+'</li>');}
-  else{
-    $('#list').append('<li>'+i+'</li>');}
 
-    };
+    var pingPong = play($("#input-number").val());
+
+    pingPong.forEach(function (value) {
+
+      $("#list").append("<li>" + value + "</li>");
+
+    });
   });
 });
